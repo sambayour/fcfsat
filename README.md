@@ -7,6 +7,8 @@ A React & laravel REST API that generate and authenticate request with Passport 
 -   MySql >= 5.7.31
 -   PHP >= 7.3.21
 -   Postman
+-   AWS SES
+-   AWS CodePipeline
 -   Terminal or Command Prompt (To run commands)
 
 ### Set up
@@ -27,6 +29,9 @@ php artisan migrate
 # Run Composer
 composer install
 
+# Install node_modules 
+npm install
+
 # Install Passport
 php artisan passport install
 
@@ -35,43 +40,23 @@ php artisan serve
 
 ```
 
-## Endpoints
+### Edit Frontend
 
-### Register user
+If you want to edit the react component in development mode run
+``` npm run dev```
 
-```
-POST {BASE_URL}/api/register
-{
-"first_name":"Samuel",
-"last_name":"Olubayo",
-"email":"samuelolubayo@gmail.com",
-"password":"samuel"
-}
-```
+If you want to edit the react component in production mode run
+``` npm run prod```
 
-### Login with email & password
-
-```
-POST {BASE_URL}api/login
-{ "email":"YOUR_REGISTERED_EMAIL","password":"YOUR_REGISTERED_PASSWORD"}
-```
-
-### Postman Collection
-
-For faster api usage, find the postman collection
-
-```
-fcfsat.postman_collection.json
-```
-
-in the root folder of the project.
 
 ### Base URL
 
-For testing purpose the endpoint is hosted on
+For testing purpose the url is hosted on 
+
+[fcfsat.url](http://fuelcreditapp-env.eba-7wrwh2nj.us-east-2.elasticbeanstalk.com/)
 
 ```
-
+Because SES credential is in sandbox, only samuelolubayo@gmail.com and nooreplyworks@gmail.com will get email notification.
 ```
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
