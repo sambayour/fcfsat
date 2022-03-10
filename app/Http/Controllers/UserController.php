@@ -8,6 +8,8 @@ use Illuminate\Contracts\Validation\Validator as ValidationValidator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Mail\WelcomeEmail;
+use Illuminate\Support\Facades\Mail;
 
 
 class UserController extends Controller
@@ -21,6 +23,7 @@ class UserController extends Controller
             "password"=>"required",
             "c_password"=>"required|same:password"
         ]);
+        
         if($validation->fails()){
             return response()->json(['error'=>$validation->errors()],203); 
         }
@@ -30,6 +33,15 @@ class UserController extends Controller
                 "email"=>$request->email,
                 "password"=>Hash::make($request->password)
             ]);
+
+        //mailable data
+
+        $info = [
+                "name"=>$request->name,
+                "email"=>$request->email
+        ];
+
+            Mail::to($request->email)->send(new WelcomeEmail($info));
             
         }
         return response()->json($user);
