@@ -1,4 +1,4 @@
-const initState = "http://127.0.0.1:8000/api/";
+const initState = "http://fuelcreditapp-env.eba-7wrwh2nj.us-east-2.elasticbeanstalk.com/api/";
 const MainUrl = (state=initState,action)=>{
     switch (action.type) {
         case "CHANGE":
