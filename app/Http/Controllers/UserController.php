@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Mail\WelcomeEmail;
 use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
 
 
 class UserController extends Controller
@@ -33,15 +34,12 @@ class UserController extends Controller
                 "email"=>$request->email,
                 "password"=>Hash::make($request->password)
             ]);
-
-        //mailable data
-
-        $info = [
-                "name"=>$request->name,
-                "email"=>$request->email
-        ];
-
-            Mail::to($request->email)->send(new WelcomeEmail($info));
+//Because SES credential is in sandbox, only samuelolubayo@gmail.com and nooreplyworks@gmail.com will get email notification.
+                if($request->email == 'samuelolubayo@gmail.com' || $request->email == 'nooreplyworks@gmail.com'){
+                            //mailable data
+                            $info = ["name"=>$request->name,"email"=>$request->email];
+                          Mail::to($request->email)->queue(new WelcomeEmail($info));
+                    }
             
         }
         return response()->json($user);
