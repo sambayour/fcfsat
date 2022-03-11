@@ -53,7 +53,7 @@ const Signin = () =>{
             ).catch((err)=>{
                 console.log("this is error",err.response.status);  
                 if(err.response.status == 401){
-                    alert("Please Enter valid email and passwor");
+                    alert("Invalid email or password");
                 }
             });
         }

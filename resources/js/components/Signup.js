@@ -71,7 +71,7 @@ const signupOnClickHandler = (e) =>{
                  
             }
             else if(res.status == 200){
-                alert("Registeration success");
+                alert("New user added successfully");
                 hs.push("/");
             }
         }).catch(
